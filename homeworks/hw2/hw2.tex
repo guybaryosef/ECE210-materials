@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{2} % Number of Homework
+\def\Session{Spring 2018}
+\def\Section{B}
+\def\MyEmail{ccnezin+ece210@cooper.edu}
+\def\DateOfSubmission{January 31st, 2018 }
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{January 24, 2018}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+
+\begin{document}
+\maketitle
+This problem set will cement your understanding of array operations and go over several important built in functions.  These operations are especially helpful in avoiding loops, we will explore the differences in speed and elegance. Homework is due on \DateOfSubmission  to \MyEmail. 
+
+ \noindent \textbf{1. Vector? I barely know her!} Here we will look at some applications of built in vectorized functions.
+ \begin{qparts}
+  \item Create a vector of 100 evenly spaced samples of the exponential function from 0 to 1.
+  \item Approximate the integral using the trapezoid method (use \emph{trapz} and multiply by the interval) and rectangular method (sum over all points and multiply by the interval).
+  \item Approximate the cumulative integral using the trapezoidal method (use \emph{cumtrapz}) and rectangular method (use \emph{cumsum}).
+
+  \item Approximate the derivative by taking the difference between all adjacent elements and dividing by the time spacing. Similarly, approximate the second derivative.  What are the lengths of each derivative vector?
+  % \item Implement your own anonymous diff function which returns a vector that is the same length and serves as an inverse to the cumsum function, i.e. \emph{cumsum(yourDiff(v)) = yourDiff(cumsum(v)) = v}
+  \item Given the vector $[0\ 1\ 2\ 3\ 4\ 5]$, create the vector $[3\ 4\ 5\ 0\ 1\ 2]$ using \emph{circshift}.
+ \end{qparts}
+
+ \noindent \textbf{2. Array Foray} Perform the following matrix operations. 
+ \begin{qparts}
+ \item Use \emph{reshape} to create a $10 \times 10$ matrix $A$ where $A = \begin{bmatrix}1 &11 & ...& 91\\ 2&12&...&92\\ \vdots&\vdots&\ddots&\vdots\\ 10&20&...&100\end{bmatrix}$.
+ \item Use \emph{magic} to create a $10 \times 10$ magic matrix $B$. Use $B$ to create a matrix $C$ which has the same diagonal values of B and is zero elsewhere. \textbf{Note}: You might want to look up \emph{diag} to see how to do this elegantly. 
+ \item Flip the second column of $B$ such that the column is inverted up down.
+ \item Flip the matrix $A$ from left to right.
+ \item Make cSum the column-wise sum of every column of AB (normal matrix multiplication). The result should be a row vector.
+ \item Make cMean the row-wise mean of every row of AB (element-wise matrix multiplication). The result should be a column vector.
+ \item Delete the last column of $A$. 
+ \end{qparts}
+ 
+ \noindent \textbf{3. Gotta Go Fast} Generate a $300 \times 500$ matrix with entries $a_{i,j} = \frac{i^2+j^2}{i+j+3} $ using the following methods and use \emph{tic toc} to time the speed of each and report the times in a table (using \emph{table} function).
+ \begin{qparts}
+ \item Using for loops and no pre-allocation.
+ \item Using for loops and pre-allocating memory with \emph{zeros}.
+ \item Using only elementwise matrix operations. \textbf{Note}: \emph{repmat} and \emph{meshgrid} will be useful here. 
+ \end{qparts}
+\end{document}
