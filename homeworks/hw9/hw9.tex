@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{9} % Number of Homework
+\def\Session{Spring 2019}
+\def\Section{B}
+\def\MyEmail{guybymatlab@gmail.com}
+\def\DateOfSubmission{ --------- }
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+
+\begin{document}
+\maketitle
+Please submit this homework as a \textit{.m} file, 
+with suppressed output.
+Remember that all lectures and homeworks may be found at 
+\textit{github.com/guybaryosef/ECE210-materials}.
+Homework is due on \DateOfSubmission to \MyEmail.
+
+\noindent
+\newline
+\textbf{1. Math or just dumb?}
+For this problem you will need to download a \textit{csv} file that
+contains a time series, for which you will build an AR model and then
+use it for forecasting. Remember that an AR model has the equation:
+\begin{eqnarray}\label{eq:AR-Model}
+    X(t) = \delta + \sum_{n = 1}^{p}\alpha_nr(t-n) + v_t
+\end{eqnarray}
+
+\begin{enumerate}[a.]
+    \item Download the \textit{csv} file located at 
+    \textit{github.com/guybaryosef/ECE210-materials/hw/hw9/SnP500-2010.csv}.
+    A \textit{csv} file, or 'comma separated variable' file,
+    is a file format used to store data into a spreadsheet, 
+    with columns separated by commas and rows separated by 
+    newline characters.
+    In this file you will find the closing value of the S\&P 500 over every
+    'work' day for the year 2010.
+    For simplicity, you can ignore the date associated with closing value
+    (as weekends and certain holidays will result in skipped days), and we 
+    can simply look at each closing value as the next 'step', all of even sizes.
+
+    \item Run a least squares fit on the time series to find the AR
+    coefficients of an AR model of order 5 (\textbf{Hint}: Look at lesson
+    10 for how to approach this part).
+
+    \item Using the AR model found in the previous section, use equation
+    \eqref{eq:AR-Model} to forecast the next 10 days.
+\end{enumerate}
+
+\noindent
+\newline
+\textbf{2. Now walk it out...}
+You can think of a random walk as a running (cumulative) sum of
+i.i.d. random variables. In our case 1-dimensional case,
+the next value in the series is the last value plus or minus one with a 50\%
+chance. This can be written mathematically as:
+\begin{eqnarray*}
+    X[0] = 0 \\
+    X[t+1] = X[t] + \begin{cases} 
+            \delta_1, & p \\
+            \delta_2, & 100\leq x 
+        \end{cases}
+\end{eqnarray*}
+    
+\begin{enumerate}[a.]
+    \item  Generate 50 random walks with the properties described above, with
+    a total of 300 steps.
+    
+    \item  Plot the random walks you generated all on top of one another.
+    
+    \item  Now repeat parts (a) and (b) for a random walk where the
+    probability of +1 is 75\% and the probability of-1 is 25\%.
+    What is the difference between these results and your previous plot?
+\end{enumerate}
+
+\end{document}

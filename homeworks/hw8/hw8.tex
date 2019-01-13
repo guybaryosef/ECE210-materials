@@ -1,0 +1,65 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{8} % Number of Homework
+\def\Session{Spring 2019}
+\def\Section{B}
+\def\MyEmail{guybymatlab@gmail.com}
+\def\DateOfSubmission{ --------- }
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+
+\begin{document}
+\maketitle
+Please submit this homework as a \textit{.m} file, 
+with suppressed output.
+Remember that all lectures and homeworks may be found at 
+\textit{github.com/guybaryosef/ECE210-materials}.
+Homework is due on \DateOfSubmission to \MyEmail.
+
+
+\noindent
+\newline
+\textbf{1. State of the Space}
+
+
+\noindent
+\newline
+\textbf{2. Girl look at that Bode!}
+A continuous time system is characterized by the following equation:
+\begin{align*}
+    f=t^5e^{−2t}sin(5t) +t^3e^{−3}tcos(4t) +tcos(10t)
+\end{align*}
+
+\begin{enumerate}[a.]
+    \item Take the Laplace Transform of the above equation. 
+    (Hint:  Use the symbolic toolbox!)
+    
+    \item Use \textbf{\textit{numden}} and \textbf{\textit{coeffs}}
+    to extract the coefficients from the Laplace transform. 
+    Use \textbf{\textit{double}} to convert them to numeric form.
+    
+    \item Make a bode plot for the equation you obtained above. 
+    Turn the grid on. Why does the grid look the way it does?
+\end{enumerate}
+
+\end{document}

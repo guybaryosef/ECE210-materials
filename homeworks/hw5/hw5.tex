@@ -1,0 +1,102 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{5} % Number of Homework
+\def\Session{Spring 2019}
+\def\Section{B}
+\def\MyEmail{guybymatlab@gmail.com}
+\def\DateOfSubmission{ --------- }
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+
+\begin{document}
+\maketitle
+In this homework, we will go through a few advanced data structures in MATLAB,
+such as cell arrays, classes, chars, as well as dataset importing in MATLAB.
+You will be importing in the fisheriris dataset and encapsulating it in classes.
+After obtaining all the data, you will be required to write some methods for
+the class you just created.
+Also note that some operations will require you to do some research, but not too much!
+
+Please submit this homework as \textit{.m} files, 
+with suppressed output.
+Remember that all lectures and homeworks may be found at 
+\textit{github.com/guybaryosef/ECE210-materials}.
+Homework is due on \DateOfSubmission to \MyEmail.
+
+\noindent
+\newline
+\begin{enumerate}[a.]
+	\item  Load in the fisheriris dataset with the command \textbf{\textit{load fisheriris}}.
+	You should obtain a $150 \times 4$ matrix called \textit{meas},
+	as well as a $150 \times 1$ cell array called species in your workspace.
+	This is a very popular dataset, 
+	and you can quickly google \textit{fisherisis} to see what the columns of meas represent. 
+
+	\item Create a class called \textit{Flower} in its own \textit{.m} file.
+	In your \textit{Flower} class, you should have the following properties:
+	\begin{itemize} 
+		\item petalWidth (double)
+		\item petalLength(double)
+		\item sepalWidth(double)
+		\item sepalLength(double)
+		\item species(char).
+	\end{itemize}
+	The ith species corresponds to the ith row of information in \textit{meas}.
+	Note that you do not need to specify the data type of the properties when
+	you are declaring a class – the following properties are just here to impress on you what
+	type of properties you would be expecting. 
+	
+	\item Create a constructor for your class.
+	It should take in 4 doubles and a char array corresponding, in order,
+	to the five properties of your class.
+	
+	\item Now, import the entries from \textit{meas} and \textit{species} into MATLAB and
+	store them in a 150$\times$1 cell array of \textit{Flower} instances.
+	You can either use a for loop to import the entries,
+	or use a more elegant way to make all entries in one line
+	(this would require some research on object formation in MATLAB).
+	Either way is ok.
+	However, note that the name of the species are stored as cell arrays;
+	make sure to extract from the cell as a char and remove trailing white spaces
+	before storing them in the \textit{Flower} instances.
+	There is a single function that will do this,
+	which you should be able to find with a quick google search.
+
+	\item Create a method called \textit{getSLength} for the \textit{Flower} object,
+	which will return the sepal length of the object.
+	Use this on the 25th Flower in your cell array, and check (using \textit{==})
+	that this is the correct value by looking that the corresponding entry in \textit{meas}.
+	
+	\item Create another method called \textit{report} for the \textit{Flower} object,
+	which will print out a statement on the command window and report
+	the details about the \textit{Flower} object.
+	This function does not need to return anything.
+	It should print out a statement of the following form if the flower
+	is 5.1 cm in sepal length, 3.5 cm in sepal width, 1.4 cm in petal length,
+	0.2 cm in petalWidth, and the species is setosa, for example: \\
+	``The length and width of its sepal are 5.1 cm and 3. 5cm respectively,
+	while the length and width of its petal are 1.4cm and 0.2cm respectively.
+	It belongs to the setosa species."
+\end{enumerate}
+
+\end{document}

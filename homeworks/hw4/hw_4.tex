@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{4} % Number of Homework
+\def\Session{Spring 2019}
+\def\Section{B}
+\def\MyEmail{guybymatlab@gmail.com}
+\def\DateOfSubmission{ --------- }
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+\begin{document}
+\maketitle
+Please submit this homework as \textit{.m} files (note the plural), 
+with suppressed output (obviously, the plots will still be displayed).
+Remember that all lectures and homeworks may be found at 
+\textit{github.com/guybaryosef/ECE210-materials}.
+Homework is due on \DateOfSubmission to \MyEmail.
+
+\noindent
+\newline
+\textbf{1. Who Gives a Schmidt!?}
+Professor Mintchev has just assigned you 20 tedious Gram Schmidt Orthonormalization problems!
+Luckily, you are a master of MATLAB so you decide to build a function which can handle them all
+for you in short time.
+% \textbf{Note:} This homework has been assigned in all three ECE-210 sections.
+
+\begin{enumerate}[a.]
+    \item Create a function called \emph{gramSchmidt}.  
+    The input to the function should be a 2-D array, 
+    each column of which is a vector in the original linearly independent set of vectors. 
+    Implement GS to create an orthonormal set of vectors from these.
+    Store them as columns in an output matrix, similar to the input format.
+    Feel free to use the \emph{norm} function if needed.
+
+    \item After you've created this function, you'd like a way to test if it works.
+    Create another function called \emph{isOrthonormal} which has a single 2-D array as the input.
+    The function should return 1 if all columns are orthonormal and 0 otherwise.
+    Be careful with this - direct floating point equality comparison is a bad idea.
+    Instead apply a threshold to the difference of the two numbers like so:
+    if $|x-\hat{x}| > \epsilon$ then ... The \emph{eps} function might be useful here.
+    You can add a nice big fudge factor to make the tolerance big enough that it works,
+    just don't make it huge
+    (Note that there is also the matter of spanning the same space as the original matrix,
+    don't worry about this condition).
+
+    \item Finally, we would like to estimate another vector as a linear combination of
+    these orthonormal vectors (project the vector onto the space of the orthonormal vectors).
+    Implement a function called \emph{orthoProj} which takes a vector to be estimated and an array
+    of orthonormal columns as arguments and outputs the estimated vector.
+
+    \item Test all of the above functions on some random complex vectors (use \emph{rand} to
+    make a random vector).
+    First test the case where there are more elements in each vector than the number of vectors.
+    Then test the case where the number of vectors is equal to the number of elements in a vector.
+    Compare the errors.
+
+    \item Uniformly sample \emph{sin(x)} on $[0, 2\pi]$. Generate 5 Gaussians using the pdf:
+    $$
+    \frac{1}{\sqrt{2\pi \sigma^2}}\exp{\frac{-(x-\mu)^2}{\sigma^2}}
+    $$
+    Give each Gaussian standard deviation 1 $(\sigma = 1)$ and pick the mean from a linearly
+    spaced vector ranging from $0$ to $2\pi$ $(\mu \in \left\{0, \pi/2, \pi, 3\pi/2, 2\pi\right\})$.
+    Consider using \emph{ndgrid} for compact code. 
+    Plot the Sinusoid and Gaussians on the same plot. Give axis labels and a title.
+    Use \emph{gramSchmidt} to create an orthonormal set of vectors from the Gaussians.
+    Use \emph{orthoProj} to estimate the sinusoid from that set of vectors.  Create a 2x1 subplot.
+    Plot the sinusoid and the estimated sinusoid together on the upper plot.
+    Plot the orthonormal basis functions on the lower plot.
+    Remember to give all plots proper labels and titles!
+
+\end{enumerate}
+
+\end{document}

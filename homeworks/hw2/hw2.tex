@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{2} % Number of Homework
+\def\Session{Spring 2019}
+\def\Section{B}
+\def\MyEmail{guybymatlab@gmail.com}
+\def\DateOfSubmission{ --------- }
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+
+\begin{document}
+\maketitle
+This problem set will cement your understanding of array operations and go over 
+several important built in functions.
+It also explores relational and logical indexing of matrices as well as basic plotting in MATLAB.
+
+As with all the homeworks, please submit it as a \textit{.m} file, 
+with suppressed output.
+Remember that all lectures and homeworks may be found at 
+\textit{github.com/guybaryosef/ECE210-materials}.
+Homework is due on \DateOfSubmission to \MyEmail. 
+
+\noindent
+\newline
+\textbf{1. Lunar Eclipse} 
+This question guides you through some basic image processing techniques in MATLAB.
+You will create interesting images with relational and logical indexing,
+as well as the \emph{imshow} function to visualize what you have created. 
+
+\begin{itemize}
+    \item Create a $100 \times 100$ $A$ where its contents are all ones.
+
+    \item Create a $100 \times 100$ $B$ where its contents are all zeros.
+
+    \item In matrix $A$, set the values of entry $a_{i,j}$ equal to 0 if $\sqrt{(i-50)^2 + (j-50)^2} < 20$.
+    \textbf{Hint} : \textbf{\textit{meshgrid}} would be useful in creating the indices.
+
+    \item In matrix $B$, set the values of entry $a_{i,j}$ equal to 1 if $\sqrt{(i-40)^2 + (j-40)^2} < 20$.
+
+    \item Visualize the following results with \textbf{\textit{figure}} and \textbf{\textit{imshow}}. 
+    Describe each of the results with one sentence each. 
+
+        \begin{itemize}
+        \item $A$
+        \item $B$
+        \item Intersection between $A$ and $B$
+        \item Union between $A$ and $B$
+        \item Complement of intersection between $A$ and $B$
+        \item Complement of union between $A$ and $B$
+        \end{itemize}
+\end{itemize}
+
+
+\noindent
+\newline
+\textbf{2. Array Foray} Perform the following matrix operations. 
+\begin{qparts}
+    \item Use \textbf{\textit{reshape}} to create a $10 \times 10$ matrix $A$ where 
+    $A = \begin{bmatrix}1 &11 & ...& 91\\ 2&12&...&92\\ \vdots&\vdots&\ddots&\vdots\\ 10&20&...&100\end{bmatrix}$.
+
+    \item Use \textbf{\textit{magic}} to create a $10 \times 10$ magic matrix $B$. 
+    Use $B$ to create a matrix $C$ which has the same diagonal values of B and is zero elsewhere. 
+    \textbf{Note}: You might want to look up \textbf{\textit{diag}} to see how to do this elegantly. 
+
+    \item Flip the second column of $B$ such that the column is inverted up down.
+
+    \item Flip the matrix $A$ from left to right.
+
+    \item Make \textit{cSum} the column-wise sum of every column of AB (normal matrix multiplication).
+    The result should be a row vector.
+
+    \item Make \textit{cMean} the row-wise mean of every row of AB (element-wise matrix multiplication).
+    The result should be a column vector.
+
+    \item Delete the last column of $A$. 
+\end{qparts}
+
+
+\end{document}

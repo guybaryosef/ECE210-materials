@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{3} % Number of Homework
+\def\Session{Spring 2019}
+\def\Section{B}
+\def\MyEmail{guybymatlab@gmail.com}
+\def\DateOfSubmission{ --------- }
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+
+\begin{document}
+\maketitle
+This problem set's goal is to familiarize you with two useful concepts in MATLAB,
+functions and plotting, as well as continue getting you comfortable with indexing.
+It should also add to lesson 3's emphasis that
+\textit{\textbf{for}} loops are often practically inefficient,
+despite the fact that they are often the
+first way we may imagine to tackle a problem.
+Note that at a minimum, all plots should have a title, x-axis and y-axis labels,
+and if there is more than one function in the same figure, a legend as well.
+Additionally, make sure your axis bounds are adequate. 
+
+Please submit this homework as \textit{.m} files (note the plural), 
+with suppressed output (obviously, the plots will still be displayed).
+Remember that all lectures and homeworks may be found at 
+\textit{github.com/guybaryosef/ECE210-materials}.
+Homework is due on \DateOfSubmission to \MyEmail. 
+
+\noindent
+\newline
+\textbf{1. Fun with find}
+Write a function to return the value and index of a number in a 
+vector / matrix that is closest to a desired value.
+The function should be called as $[val, ind] = findClosest(x, desiredValue)$.
+This function can be accomplished in less than five lines.
+Show that the function works by finding the value closest to $3/2$
+(and index of said value) in \textbf{\textit{sin( linspace(0,5,100) ) + 1}}.
+You will find \textbf{\textit{abs}}, \textbf{\textit{min}} and/or \textbf{\textit{find}} useful.
+\textbf{Hint}: You may have some trouble using \textbf{\textit{min}} when \textit{x} is a matrix.
+To convert the matrix to a vector, you can use $y = x(:)$.
+
+\noindent
+\newline
+\textbf{2. Sincing Ship} 
+Here we will look at a function near and dear to the signal processing community's heart -
+the sinc function.
+You are going to implement your own functions to find the local extrema and roots
+(remember to label your plots)!
+
+\begin{itemize}
+    \item Sample a sinc with 10001 linearly spaced points on $[-2\pi, 2\pi]$ using 
+    the \textbf{\textit{sinc}} function. Plot your results.
+
+    \item Create a function (either anonymously or in another file) which locates
+    the indices at which the input vector transitions from one sign to another.
+    \textbf{Note:} This can be done in one line of code but it is $trecherous^{FF}$.
+    For one scenario the vector has a positive value and then a negative value,
+    i.e. $v(n) > 0$ and $v(n+1) < 0$. 
+    The root occurs somewhere in between, you can pick either $n$ or $n+1$.
+    We could loop through and check this condition at every point - don't do that.
+    Instead think of a way to use logical indexing:
+    You will want to write conditions on the vector and some kind of shifted version of itself.
+    Beware however, when you do this you will have non-overlapping points.
+    It is up to you to figure out what to with them.
+
+    \item Apply your function to the sinc you created.
+    Find the roots (x and y coordinates) and plot them as black circles
+    on top of the sinc using \textbf{\textit{plot(xRoots,yRoots,'ko')}}.
+    (make sure your axis is tight.)  
+
+    \item Now we are interested in finding the extrema
+    (local minimums and maximums).
+    Firstly, approximate the derivative by taking the difference between all adjacent elements
+    and dividing by their time spacing.
+    Then apply your function to the approximate derivative of your sinc to obtain the extrama.
+    Finally, plot them as red stars on top of the sinc using \textbf{\textit{plot(xMinMax,yMinMax,'r*')}}.
+\end{itemize}
+
+\noindent
+\newline
+\textbf{3. Gotta Go Fast}
+Generate a $300 \times 500$ matrix with entries $a_{i,j} = \frac{i^2+j^2}{i+j+3} $
+using the following methods and use \textbf{\textit{tic toc}} to time the speed of each and
+report the times in a table (using the \textbf{\textit{table}} function).
+
+\begin{qparts}
+    \item Using for loops and no pre-allocation.
+
+    \item Using for loops and pre-allocating memory with \textbf{\textit{zeros}}.
+
+    \item Using only element-wise matrix operations.
+    \textbf{Note}: \textbf{\textit{repmat}} and \textbf{\textit{meshgrid}} will be useful here. 
+\end{qparts}
+
+\end{document}
