@@ -38,7 +38,7 @@ Homework is due on \DateOfSubmission to \MyEmail.
 
 \noindent
 \newline
-\textbf{1. Math or just dumb?}
+\textbf{1. Dipping your toes:}
 For this problem you will need to download a \textit{csv} file that
 contains a time series, for which you will build an AR model and then
 use it for forecasting. Remember that an AR model has the equation:
@@ -47,49 +47,52 @@ use it for forecasting. Remember that an AR model has the equation:
 \end{eqnarray}
 
 \begin{enumerate}[a.]
-    \item Download the \textit{csv} file located at 
-    \textit{github.com/guybaryosef/ECE210-materials/hw/hw9/SnP500-2010.csv}.
-    A \textit{csv} file, or 'comma separated variable' file,
+    \item A \textit{csv} file, which stands for 'comma separated variable',
     is a file format used to store data into a spreadsheet, 
-    with columns separated by commas and rows separated by 
+    with the columns separated by commas and the rows separated by 
     newline characters.
-    In this file you will find the closing value of the S\&P 500 over every
-    'work' day for the year 2010.
+    To begin this problem, download and import the file called \textit{GOOG.csv}
+    from:
+    \textit{github.com/guybaryosef/ECE210-materials/tree/master/homeworks/hw9}.
+    In this file you will find the adjusted closing value of Alphabet's stock
+    (GOOG) over the past year.
     For simplicity, you can ignore the date associated with closing value
-    (as weekends and certain holidays will result in skipped days), and we 
-    can simply look at each closing value as the next 'step', all of even sizes.
+    (note that weekends and certain holidays will result in skipped days),
+    and instead we can treat each day as a equal distanced time step.
 
     \item Run a least squares fit on the time series to find the AR
-    coefficients of an AR model of order 5 (\textbf{Hint}: Look at lesson
+    coefficients of an AR model of order 10 (\textbf{Hint}: Look at lesson
     10 for how to approach this part).
+    Notice that to be able to do the linear regression, you will need to
+    start 10 steps into the time series,
+    thereby shrinking it by 10. 
 
     \item Using the AR model found in the previous section, use equation
-    \eqref{eq:AR-Model} to forecast the next 10 days.
+    \eqref{eq:AR-Model} to forecast the next 10 days of activity.
+    Unfortunately, if you look at the actual stock over those future 10 days,
+    you will see that your forecasting was... slightly less than accurate. 
+    Not to fret!
+    This is just an example, a chance to dip your toes into one part of the
+    of quantitative finance.
 \end{enumerate}
 
 \noindent
 \newline
 \textbf{2. Now walk it out...}
 You can think of a random walk as a running (cumulative) sum of
-i.i.d. random variables. In our case 1-dimensional case,
+i.i.d. random variables. In our 1-dimensional case,
 the next value in the series is the last value plus or minus one with a 50\%
-chance. This can be written mathematically as:
-\begin{eqnarray*}
-    X[0] = 0 \\
-    X[t+1] = X[t] + \begin{cases} 
-            \delta_1, & p \\
-            \delta_2, & 100\leq x 
-        \end{cases}
-\end{eqnarray*}
+chance.
     
 \begin{enumerate}[a.]
-    \item  Generate 50 random walks with the properties described above, with
-    a total of 300 steps.
+    \item  Generate 50 random walks with the properties described above,
+    each with a total of 300 steps.
     
     \item  Plot the random walks you generated all on top of one another.
+    There is no need for a plot legend.
     
     \item  Now repeat parts (a) and (b) for a random walk where the
-    probability of +1 is 75\% and the probability of-1 is 25\%.
+    probability of $+1$ is $75\%$ and the probability of $-1$ is $25\%$.
     What is the difference between these results and your previous plot?
 \end{enumerate}
 
