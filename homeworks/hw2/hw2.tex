@@ -13,7 +13,7 @@
 \def\Session{Spring 2019}
 \def\Section{B}
 \def\MyEmail{guybymatlab@gmail.com}
-\def\DateOfSubmission{ --------- }
+\def\DateOfSubmission{January 30th }
 
 \title{MATLAB Assignment \Homework}
 \author{\Session, Section \Section}
@@ -30,46 +30,41 @@
 
 \begin{document}
 \maketitle
-This problem set will cement your understanding of array operations and go over 
-several important built in functions.
-It also explores relational and logical indexing of matrices as well as basic plotting in MATLAB.
+This problem set will cement your understanding of vector operations and
+go over several important built-in functions.
+It will also provide an example of the efficiency to be gained by pre-allocating
+your data structures.
 
 As with all the homeworks, please submit it as a \textit{.m} file, 
 with suppressed output.
 Remember that all lectures and homeworks may be found at 
 \textit{github.com/guybaryosef/ECE210-materials}.
-Homework is due on \DateOfSubmission to \MyEmail. 
+This homework is due at 11:59 PM on \DateOfSubmission to \MyEmail. 
 
 \noindent
 \newline
-\textbf{1. Lunar Eclipse} 
-This question guides you through some basic image processing techniques in MATLAB.
-You will create interesting images with relational and logical indexing,
-as well as the \emph{imshow} function to visualize what you have created. 
+\textbf{1. Vector? I hardly know her!}
+Here we will look at some applications of built-in vectorized functions.
+Label your variables appropriately.
+\begin{qparts}
+    \item Create a vector of 100 evenly spaced samples of
+    the exponential function over the interval [0,1].
 
-\begin{itemize}
-    \item Create a $100 \times 100$ $A$ where its contents are all ones.
+    \item Approximate the integral using the trapezoidal method
+    (use \textbf{\textit{trapz}} and multiply by the interval)
+    as well as the rectangular method (sum over all points and multiply by the interval).
 
-    \item Create a $100 \times 100$ $B$ where its contents are all zeros.
+    \item Approximate the cumulative integral using the trapezoidal method
+    (use \textbf{\textit{cumtrapz}}) and the rectangular method
+    (use \textbf{\textit{cumsum}}).
+    Do you get the same pair of answers as in part b?
 
-    \item In matrix $A$, set the values of entry $a_{i,j}$ equal to 0 if $\sqrt{(i-50)^2 + (j-50)^2} < 20$.
-    \textbf{Hint} : \textbf{\textit{meshgrid}} would be useful in creating the indices.
+    \item Approximate the derivative by taking the difference between
+    all adjacent elements and dividing by the time spacing.
+    Similarly, approximate the second derivative.
+    What are the lengths of each derivative vector?
 
-    \item In matrix $B$, set the values of entry $a_{i,j}$ equal to 1 if $\sqrt{(i-40)^2 + (j-40)^2} < 20$.
-
-    \item Visualize the following results with \textbf{\textit{figure}} and \textbf{\textit{imshow}}. 
-    Describe each of the results with one sentence each. 
-
-        \begin{itemize}
-        \item $A$
-        \item $B$
-        \item Intersection between $A$ and $B$
-        \item Union between $A$ and $B$
-        \item Complement of intersection between $A$ and $B$
-        \item Complement of union between $A$ and $B$
-        \end{itemize}
-\end{itemize}
-
+\end{qparts}
 
 \noindent
 \newline
@@ -82,18 +77,33 @@ as well as the \emph{imshow} function to visualize what you have created.
     Use $B$ to create a matrix $C$ which has the same diagonal values of B and is zero elsewhere. 
     \textbf{Note}: You might want to look up \textbf{\textit{diag}} to see how to do this elegantly. 
 
-    \item Flip the second column of $B$ such that the column is inverted up down.
+    \item Flip the second column of $B$ such that it is inverted upside down.
 
     \item Flip the matrix $A$ from left to right.
 
-    \item Make \textit{cSum} the column-wise sum of every column of AB (normal matrix multiplication).
+    \item Find the column-wise sum of every column of AB (normal matrix multiplication).
     The result should be a row vector.
 
-    \item Make \textit{cMean} the row-wise mean of every row of AB (element-wise matrix multiplication).
+    \item Find the row-wise mean of every row of AB (element-wise matrix multiplication).
     The result should be a column vector.
 
     \item Delete the last column of $A$. 
 \end{qparts}
 
+\noindent
+\newline
+\textbf{3. Gotta Go Fast}
+Generate a $300 \times 500$ matrix with entries $a_{i,j} = \frac{i^2+j^2}{i+j+3} $
+using the following methods and use \textbf{\textit{tic toc}} to time the speed of each.
+Report the times in a table (using the \textbf{\textit{table}} function).
+
+\begin{qparts}
+    \item Using \textit{for} loops and no pre-allocation.
+
+    \item Using \textit{for} loops and pre-allocating memory with \textbf{\textit{zeros}}.
+
+    \item Using only element-wise matrix operations.
+    \textbf{Note}: \textbf{\textit{repmat}} and/or \textbf{\textit{meshgrid}} will be useful here. 
+\end{qparts}
 
 \end{document}
