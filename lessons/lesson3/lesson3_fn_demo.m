@@ -11,5 +11,5 @@ end
 
 % Because this file doesn't have a function with the name
 % 'lesson3_fn_demo', it will try and call the only function it has and
-% 'produce for it' and error.
+% 'produce for it' an error.
     

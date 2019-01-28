@@ -1,8 +1,9 @@
 function b = myFunction(a)
     % myFunction - a small description of what this function does goes a
-    % long way towards readability!
+    % long way towards readability and maintainability!
     b = squareMe(a)+doubleMe(a);
 end
+
 
 % These two functions below are local functions that cannot be used 
 % outside of this file. 
