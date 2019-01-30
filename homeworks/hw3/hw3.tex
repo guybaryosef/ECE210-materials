@@ -90,16 +90,17 @@ don't stress over stylizing your plots beyond what is asked.
     \item Create a function (either anonymously or in another file) which locates
     the indices at which the input vector transitions from one sign to another.
     \textbf{Note:} This can be done in one line of code but it is $trecherous^{FF}$.
-    For one scenario the vector has a positive value and then a negative value,
+    For one scenario the vector has a positive value followed by a negative value,
     i.e. $v(n) > 0$ and $v(n+1) < 0$. 
-    The root occurs somewhere in between, you can pick either $n$ or $n+1$.
-    We could loop through and check this condition at every point - don't do that.
+    In this scenario the root occurs somewhere in between and you can pick either $n$ or $n+1$
+    as the root.
+    We could loop through the vector and check this condition at every point - but don't do that.
     Instead think of a way to use logical indexing:
     You will want to write conditions on the vector and some kind of shifted version of itself.
     Beware however, when you do this you will have non-overlapping points.
     It is up to you to figure out what to with them.
 
-    \item Apply your function to the sinc you created.
+    \item Apply your function from part (b) to the sinc you created in part (a).
     Find the roots (x and y coordinates) and plot them as black circles
     on top of the sinc using \textbf{\textit{plot(xRoots,yRoots,'ko')}}. 
 
@@ -107,7 +108,7 @@ don't stress over stylizing your plots beyond what is asked.
     (local minimums and maximums).
     Firstly, approximate the derivative by taking the difference between all adjacent elements
     and dividing by their time spacing.
-    Then apply your function to the approximate derivative of your sinc to obtain the extrama.
+    Then apply your roots function to the approximate derivative of your sinc to obtain the extrama.
     Finally, plot them as red stars on top of the sinc using \textbf{\textit{plot(xMinMax,yMinMax,'r*')}}.
 \end{enumerate}
 
@@ -119,11 +120,17 @@ Write a function to return the value and index of a number in a
 vector / matrix that is closest to a desired value.
 The function should be called as $[val, ind] = findClosest(x, desiredValue)$.
 This function can be accomplished in less than five lines.
-Show that the function works by finding the value closest to $3/2$
-(and index of said value) in \textbf{\textit{sin( linspace(0,5,100) ) + 1}}.
+Show that the function works by finding the value (and index) closest to $3/2$
+in \textbf{\textit{sin( linspace(0,5,100) ) + 1}}.
 You may find the functions \textbf{\textit{abs}}, \textbf{\textit{min}} and/or \textbf{\textit{find}} useful.
 \textbf{Hint}: You may have some trouble using \textbf{\textit{min}} when \textit{x} is a matrix-
-remember that you could convert any matrix to a vector using $y = X(:)$.
+remember that you could convert any matrix to a column vector using $y = X(:)$.
 
+\noindent
+\newline
+\textbf{Bonus (worth 1 extra point):}
+Implement MATLAB's \textit{sub2ind} function for the 2-D case.
+Because you are only doing this for the 2-D case,
+the function prototype will look like: $linearInd = sub2ind(matrixSize, rowSub, colSub)$.
 
 \end{document}
