@@ -13,7 +13,7 @@
 \def\Session{Spring 2019}
 \def\Section{B}
 \def\MyEmail{guybymatlab@gmail.com}
-\def\DateOfSubmission{February 10th }
+\def\DateOfSubmission{February 27th }
 
 \title{MATLAB Assignment \Homework}
 \author{\Session, Section \Section}
@@ -34,7 +34,7 @@ Note that at a minimum, all plots should have a title, x-axis and y-axis labels,
 and if there is more than one function in the same figure, a legend as well.
 Additionally, make sure your plot's axis bounds are adequate. 
 
-Please submit this homework as \textit{.m} files (note the plural), 
+Please submit this homework as \textit{.m} files 
 with suppressed output (obviously, the plots will still be displayed).
 Remember that all lectures and homeworks may be found at 
 \textit{github.com/guybaryosef/ECE210-materials}.
@@ -53,13 +53,13 @@ for you.
     The input to the function should be a 2-D array, 
     where each column is a vector.
     The set of input vectors can be assumed to be linearly independent. 
-    Implement GS to create an orthonormal set of vectors from these.
-    Store them as columns in an output matrix, similar to the input format.
+    Implement GS to create an orthonormal set of vectors from these input vectors.
+    Store them as columns in an output matrix in the same format as the input 2-D array.
     Feel free to use the \textbf{\textit{norm}} function as needed.
 
     \item After you've created this function, you'd like a way to test if it works.
-    Create another function called \emph{isOrthonormal} which takes a 2-D array as input.
-    This function should return a logical 1 if all columns are orthonormal and logical 0 otherwise.
+    Create another function called \emph{isOrthonormal} which takes in a 2-D array as input.
+    This function should return a logical 1 if all the columns are orthonormal and logical 0 otherwise.
     Be careful with this - direct floating point equality comparison is a bad idea.
     Instead apply a threshold to the difference of the two numbers like so:
     if $|x-\hat{x}| > \epsilon$ then... The \textbf{\textit{eps}} function might be useful here.
@@ -69,32 +69,36 @@ for you.
     don't worry about this condition).
 
     \item Finally, we would like to estimate another vector as a linear combination of
-    these orthonormal vectors (i.e. to project a vector onto a space of the orthonormal vectors).
+    these orthonormal vectors (i.e. to project a vector onto the space of the orthonormal vectors).
     Implement a function called \emph{orthoProj} which takes as input a vector to be estimated 
     as well as a 2-D array of orthonormal vectors (similar format as previously) and returns
-    as the output the estimated projected vector.
+    as its output the estimated projected vector.
 
-    \item Test all of the above functions on some random complex vectors (use \emph{rand} to
+    \item Test all of the above functions on some random complex vectors (use \textit{\textbf{rand}} to
     make a random vector).
     First test the case where there are more elements in each vector than the number of vectors.
     Then test the case where the number of vectors is equal to the number of elements in each vector.
     Compare the errors.
 
-    \item Uniformly sample \emph{sin(x)} on $[0, 2\pi]$. Generate 5 Gaussians using the pdf:
+    \item Uniformly sample \emph{sin(x)} over $[0, 2\pi]$. Generate 5 Gaussian graphs using the pdf:
     $$
-    \frac{1}{\sqrt{2\pi \sigma^2}}\exp{\frac{-(x-\mu)^2}{\sigma^2}}
+    \frac{1}{\sqrt{2\pi \sigma^2}}\exp{\bigg(\frac{-(x-\mu)^2}{\sigma^2}\bigg)}
     $$
-    Give each Gaussian standard deviation 1 $(\sigma = 1)$ and pick the mean from a linearly
+    Give each Gaussian a standard deviation of 1 $(\sigma = 1)$ and pick the mean from a linearly
     spaced vector ranging from $0$ to $2\pi$ $(\mu \in \left\{0, \pi/2, \pi, 3\pi/2, 2\pi\right\})$.
     Consider using \textit{\textbf{ndgrid}} for compact code. 
-    Plot the Sinusoid and Gaussians on the same plot
-    Give axis labels and a title.
-    Use \emph{gramSchmidt} to create an orthonormal set of vectors from the generated Gaussians.
+    \begin{enumerate}
+
+    \item Plot the Sinusoid and Gaussians on the same plot.
+
+    \item Use \emph{gramSchmidt} to create an orthonormal set of vectors from the generated Gaussians.
     Use \emph{orthoProj} to estimate the sinusoid from that set of vectors.
-    Create a 2x1 subplot.
+
+    \item Create a 2x1 subplot.
     Plot the sinusoid and the estimated sinusoid together on the upper plot.
     Plot the orthonormal basis functions on the lower plot.
-    Remember to give all plots proper labels and titles!
+    Remember to properly format all your plots!
+    \end{enumerate}
 
 \end{enumerate}
 
