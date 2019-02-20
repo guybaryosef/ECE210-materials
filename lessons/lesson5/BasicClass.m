@@ -2,15 +2,15 @@ classdef BasicClass
     % A small description of the class goes a long way :).
     
     properties
-        Value
+        value
     end
     
     methods
-        function r = roundOff(obj)
-            r = round([obj.Value],2);
+        function r = roundOff(obj)  % first parameter must be the object
+            r = round([obj.value],2);
         end
-        function r = multiplyBy(obj,n)
-            r = [obj.Value] * n;
+        function r = multiplyBy(obj, n)
+            r = [obj.value] * n;
         end
     end
     
