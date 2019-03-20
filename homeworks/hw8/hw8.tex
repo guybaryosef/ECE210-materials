@@ -1,0 +1,149 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{8} % Number of Homework
+\def\Session{Spring 2019}
+\def\Section{B}
+\def\MyEmail{guybymatlab@gmail.com}
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+
+\begin{document}
+\maketitle
+Please submit this homework as a \textit{.m} file, 
+with suppressed output.
+Remember that all lectures and homeworks may be found at 
+\textit{github.com/guybaryosef/ECE210-materials}.
+Homework is due by the last day of the semester to \MyEmail.
+
+
+\noindent
+\newline
+\textbf{1. One plus one makes...}
+The fourier transform allows us to transform signals back and 
+forth between the time and frequency domains.
+While this can be relatively understood for time series signals
+(such as sound, for example), what this means for other forms
+of data might be more unclear.
+In this problem we will create a cool hybrid picture phenomena that
+is possible through the fourier transform and hopefully as we go 
+through the different parts, you will get a sense of what the frequency
+domain means for images.
+If you are in need of a reference,
+much of this question is similar to the image part shown in lesson 7.
+
+\begin{enumerate}[a.]
+    \item To begin, please download the two \textit{.png} images located at
+    \textit{github.com/guybaryosef/ECE210-materials/tree/master/homeworks/hw8}
+    and import them into your MATLAB script file.
+
+    \item Notice that these images are not the same size!
+    As a preprocessing step, shrink the images so that they have the same
+    pixel dimensions.
+    Note that to do this, you do not want to just delete the first X pixels 
+    from the larger picture, because this will un-center the image.
+    Instead if one picture is, for example, 50 pixels larger than the other
+    along the x axis, remove its first and last 25 pixels along the x axis,
+    that way equalizing its size while still keeping it centered.
+    At this point, also convert your pixel values into a double type and 
+    normalize the values.
+    Plot the two images beside one another using \textit{\textbf{subplot}}
+    and \textit{\textbf{imshow}}.
+    You should currently be seeing the fab-tastic faces of Marilyn Monroe and
+    Albert Einstein looking out at you.
+
+    \item Next we will like to create a 2-d lowpass filter.
+    One popular option is called a gaussian filter function,
+    which unsurprisingly looks like a 3-d guassian distribution.
+    The equation for this filter is:
+    \begin{align*}
+        g(x,y) = \exp{-\frac{(x-a)^2 +(y-b)^2}{2\sigma^2}}
+    \end{align*}
+    where $\sigma$ is the standard deviation and $(a,b)$ is the center of the function.
+    Using a standard deviation of $14$,
+    create this filter so that it has the same dimensions as the two images
+    (\textbf{Hint:} Use \textbf{\textit{meshgrid}}).
+    Note that you want the center of the filter, $(a,b)$, to be the center of the image.
+    Quickly plot your results using \textbf{\textit{surf}} (titles and the like unnecessary),
+    so that you can see how this resembles a lowpass filter in the frequency domain.
+    If your graph is black, you should make your graph a variable and add
+    the following line after it:
+    \textbf{\textit{set(your-graph's-variable-name, 'LineStyle', 'none')}}.
+
+    \item Just as the above can be a lowpass filter, we can quickly make
+    a highpass filter by calculating $g2(x,h) = 1 - g(x,y)$.
+    Do so here.
+
+    \item Take the fast fourier transform of each image using
+    \textit{\textbf{fftshift(fft2(img))}}.
+    Lets now apply the filters to the images.
+    Because we want to combine these two images together,
+    let's emphasize for each image its characterstics.
+    What I mean here is that Marilyn has smooth, silky hair,
+    and so a lowpass filter, which has the effect of \textit{smoothing}
+    an image, is appropriate.
+    In the same vain, Albert's image has a lot more edges, creases, and lines to it 
+    (I will avoid saying anything meaner) and so you should apply the highpass filter
+    to it.
+    Remember that convolution in the time domain is multiplication in the frequency domain
+    and so all that is necessary here is element-wise multiplication.
+    Create another subplot, this one 2x2, with the original images in the frequency domain
+    as well as the filtered images in the frequency domain.
+
+    \item Using the inverse fft,
+    return each image back to the time domain, and subplot them side by side.
+    As a bonus question, where is Albert?
+
+    \item Average the two images together, and you now have a hybrid photo!
+    Gah! A little scary at first sight!
+    However look at it up close. Now back away from the screen and look at it again.
+    Do you see different faces peering up at you?
+    If not, feel free to tweak around with the standard deviation of the filters as 
+    well as the other parameters.
+    This question was taken directly from 
+    \textit{https://jeremykun.com/2014/09/29/hybrid-images/},
+    which is an awesome blog full of cool and informative ideas and concepts. 
+\end{enumerate}
+
+
+\noindent
+\newline
+\textbf{2. Girl look at that Bode!}
+A continuous time system is characterized by the following equation:
+\begin{align*}
+    f=t^5e^{−2t}sin(5t) +t^3e^{−3}tcos(4t) +tcos(10t)
+\end{align*}
+
+\begin{enumerate}[a.]
+    \item Take the Laplace Transform of the above equation. 
+    (Hint: Use the symbolic toolbox!)
+    
+    \item Use \textbf{\textit{numden}} and \textbf{\textit{coeffs}}
+    to extract the coefficients from the Laplace transform. 
+    Use \textbf{\textit{double}} to convert them to numeric form.
+    
+    \item Create a bode plot for the equation you obtained above. 
+    As is customary with log-scaled axis (to differentiate from the
+    more standard linear spacing), turn the grid on.
+\end{enumerate}
+
+\end{document}
