@@ -1,0 +1,111 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{2} % Number of Homework
+\def\Session{Spring 2020}
+\def\Section{A}
+\def\MyEmail{guybymatlab@gmail.com}
+\def\DateOfSubmission{February 5th }
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+
+\begin{document}
+\maketitle
+This problem set will cement your understanding of vector operations and
+go over several important built-in functions.
+It will also provide an example of the efficiency to be gained by pre-allocating
+your data structures.
+
+As with all the homeworks, please submit it as a \textit{.m} file, 
+with suppressed output.
+Remember that all lectures and homeworks may be found at 
+\textit{github.com/guybaryosef/ECE210-materials}.
+This homework is due by 4:00 PM on \DateOfSubmission to \MyEmail.
+Remember to also bring a hardcopy in to class! 
+
+\noindent
+\newline
+\textbf{1. Vector? I hardly know her!}
+Here we will look at some applications of built-in vectorized functions.
+Label your variables appropriately.
+\begin{qparts}
+    \item Create a vector of 100 evenly spaced samples of
+    the exponential function over the interval [0,1].
+
+    \item Approximate the integral using the trapezoidal method
+    (use \textbf{\textit{trapz}} and multiply by the interval)
+    as well as the rectangular method (sum over all points and multiply by the interval).
+
+    \item Approximate the cumulative integral using the trapezoidal method
+    (use \textbf{\textit{cumtrapz}}) and the rectangular method
+    (use \textbf{\textit{cumsum}}).
+    Looking at the pair of cumulative values,
+    did you get the same answers as in part (b)?
+
+    \item Approximate the derivative by taking the difference between
+    all adjacent elements and dividing by the time spacing.
+    Similarly, approximate the second derivative.
+    What are the lengths of each derivative vector?
+
+\end{qparts}
+
+\noindent
+\newline
+\textbf{2. Array Foray} Perform the following matrix operations. 
+\begin{qparts}
+    \item Use \textbf{\textit{reshape}} to create a $10 \times 10$ matrix $A$ where 
+    $A = \begin{bmatrix}1 &11 & ...& 91\\ 2&12&...&92\\ \vdots&\vdots&\ddots&\vdots\\ 10&20&...&100\end{bmatrix}$.
+
+    \item Use \textbf{\textit{magic}} to create a $10 \times 10$ magic matrix $B$. 
+    Use $B$ to create a matrix $C$ which has the same diagonal values of $B$ and is zero elsewhere. 
+    \textbf{Note}: You might want to look up \textbf{\textit{diag}} to see how to do this elegantly. 
+
+    \item Flip the second column of $B$ such that it is inverted upside down.
+
+    \item Flip the matrix $A$ from left to right.
+
+    \item Find the column-wise sum of every column of $AB$ (normal matrix multiplication).
+    The result should be a row vector.
+
+    \item Find the row-wise mean of every row of $AB$ (element-wise matrix multiplication).
+    The result should be a column vector.
+
+    \item Delete the last column of $A$. 
+\end{qparts}
+
+\noindent
+\newline
+\textbf{3. Gotta Go Fast}
+Generate a $300 \times 500$ matrix with entries $a_{i,j} = \frac{i^2+j^2}{i+j+3} $
+using the following methods and use \textbf{\textit{tic toc}} to time the speed of each.
+Report the times in a table (using the \textbf{\textit{table}} function).
+
+\begin{qparts}
+    \item Using \textit{for} loops and no pre-allocation.
+
+    \item Using \textit{for} loops and pre-allocating memory with \textbf{\textit{zeros}}.
+
+    \item Using only element-wise matrix operations.
+    \textbf{Note}: \textbf{\textit{repmat}} and/or \textbf{\textit{meshgrid}} will be useful here. 
+\end{qparts}
+
+\end{document}
