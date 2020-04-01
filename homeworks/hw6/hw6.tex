@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{6} % Number of Homework
+\def\Session{Spring 2020}
+\def\Section{A}
+\def\MyEmail{guybymatlab@gmail.com}
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+
+\begin{document}
+\maketitle
+This homework deals with digital filters in a low-level sense.
+You are expected to know a bit about the z-transform,
+but if you are not in Signals and Systems,
+please contact me separately for some additional information on this homework.
+All plots should have a title, x-axis and y-axis labels,
+and if there is more than one function in the same figure, a legend as well.
+Additionally, make sure your plot's axis bounds are adequate. 
+
+Please submit this homework as a \textit{.m} file, 
+with suppressed output.
+Remember that all lectures and homeworks may be found at 
+\textit{github.com/guybaryosef/ECE210-materials}.
+Homework is due by the end of the semester to \MyEmail.
+
+\noindent
+\newline
+\textbf{1. Z it up!}
+For this question,
+you will be working with the discrete system described by the transfer function: 
+$$H(z) = \frac{\frac{1}{2}+\frac{2}{3}z+\frac{3}{7}z^2}{2+\frac{1}{3}z+\frac{1}{2}z^3}$$
+\begin{enumerate}[a.]
+    \item Store this transfer function in MATLAB as numerator and denominator vectors and
+    then find the poles and zeros.
+    
+    \item Plot the poles and zeros of $H$.
+
+    \item Use \textit{\textbf{impz}} to obtain the first 50 points of the impulse response
+    and plot them using the appropriate plotting function. 
+    
+    \item Let $x[n] = (-\frac{3}{4})^n$, and take n from 0 to 49.
+    Apply the digital filter $H$ to $x$ using \textit{\textbf{filter}}. 
+    
+    \item Now let us apply the filter analytically using convolution.
+    Apply the digital filter to \textit{x} using \textit{\textbf{conv}}.
+    
+    \item Plot your results for part (d) and (e) in 2 side-by-side subplots in order to
+    show that they are equivalent. Note that you will have to throw out some values from
+    part (e) to get the same result.
+
+
+\end{enumerate}
+
+\noindent
+\newline
+\textbf{2. You Gotta be Fibbin' Me!}
+The Fibonacci sequence is a sequence of numbers such that every number after the first two
+is the sum of the two preceding numbers. The first two numbers of the sequence are 0 and 1.
+It is cute to imagine a discrete-tyme system whose impulse response is the Fibonacci sequence!
+
+\begin{enumerate}[a.]
+    \item Use a for loop to generate the first 100 values of the Fibonacci sequence and plot 
+    these values using MATLAB and plot them using \textit{\textbf{semilogy}}.
+
+    \item Assuming this is the impulse response of a system,
+    find the output of the system with input $x[n]$ from the previous problem and plot it 
+    using an appropriate function.
+\end{enumerate}
+
+\end{document}
