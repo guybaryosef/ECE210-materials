@@ -1,0 +1,101 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,graphicx,enumerate}
+\usepackage{hyperref}
+\usepackage[parfill]{parskip}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+\def\Homework{9} % Number of Homework
+\def\Session{Spring 2020}
+\def\Section{A}
+\def\MyEmail{guybymatlab@gmail.com}
+
+\title{MATLAB Assignment \Homework}
+\author{\Session, Section \Section}
+\date{}
+
+\newenvironment{qparts}{\begin{enumerate}[{(}a{)}]}{\end{enumerate}}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+
+\begin{document}
+\maketitle
+Please submit this homework as a \textit{.m} file, 
+with suppressed output.
+Remember that all lectures and homeworks may be found at 
+\textit{github.com/guybaryosef/ECE210-materials}.
+Homework is due by the end of the semester to \MyEmail.
+
+\noindent
+\newline
+\textbf{1. Dipping your toes:}
+In this question we will be attempting to predict stock prices.
+More specifically we will download a \textit{csv} file that
+contains Google's stock value as a time series, for which you will build an AR model and then
+use it for forecasting. Remember that an AR model has the equation:
+\begin{eqnarray}\label{eq:AR-Model}
+    X(t) = \delta + \sum_{n = 1}^{p}\alpha_nr(t-n) + v_t
+\end{eqnarray}
+
+\begin{enumerate}[a.]
+    \item A \textit{csv} file, which stands for 'comma separated variable',
+    is a file format used to store data into a spreadsheet, 
+    with the columns separated by commas and the rows separated by 
+    newline characters.
+    To begin this problem, download and import the file called \textit{GOOG.csv}
+    from:
+    \textit{github.com/guybaryosef/ECE210-materials/tree/master/homeworks/hw9}.
+    In this file you will find the adjusted closing value of Alphabet's stock
+    (GOOG) over the past year.
+    For simplicity, you can ignore the dates associated with the values
+    (weekends and certain holidays will result in skipped days),
+    and we will instead treat each day as an equal-distanced time step.
+
+    \item Run a least squares fit on the time series to find the AR
+    coefficients of an AR model of order 10 (\textbf{Hint}: You can either check
+    out MATLAB's built-in functions or look back at lesson 10 for a way to code
+    this).
+    Notice that to be able to do the linear regression, you will need to
+    start the model-parameters-count number of steps into the time series,
+    thereby shrinking the actual input by this number. 
+
+    \item Using the AR model found in the previous section, use equation
+    \eqref{eq:AR-Model} to forecast the next 10 days of activity.
+    Unfortunately, if you look at the actual stock over those future 10 days,
+    you will see that your forecasting was... slightly less than accurate. 
+    Not to fret!
+    This is was just an example; an opprotunity to dip your toes into the world
+    of quantitative finance.
+\end{enumerate}
+
+\noindent
+\newline
+\textbf{2. Now walk it out...}
+You can think of a random walk as a running (cumulative) sum of
+i.i.d. random variables. In the 1-dimensional case,
+the next value in the series is the current value plus or minus 1, based on 
+a probability distrubtion.
+    
+\begin{enumerate}[a.]
+    \item  Generate 50 1-D random walks, 
+    each with the probability of stepping $1$ or $-1$ equal (50\% - 50\%),
+    each with a total of 300 steps.
+    
+    \item  Plot the random walks you generated all on top of one another.
+    There is no need for a plot legend.
+    
+    \item  Now repeat parts (a) and (b) for a random walk where the
+    probability of $+1$ is $75\%$ and the probability of $-1$ is $25\%$.
+    Is there a difference between these results and your previous plot?
+\end{enumerate}
+
+\end{document}
